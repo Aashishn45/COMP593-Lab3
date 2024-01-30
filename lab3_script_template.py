@@ -1,6 +1,7 @@
 import sys
 import os
 from datetime import date
+import pandas as pd 
 
 def main():
     sales_csv = get_sales_csv()
@@ -45,8 +46,16 @@ def create_orders_dir(sales_csv):
 # Split the sales data into individual orders and save to Excel sheets
 def process_sales_data(sales_csv, orders_dir):
     # Import the sales data from the CSV file into a DataFrame
+    sales_dframe = pd.read_csv(sales_csv)
+
     # Insert a new "TOTAL PRICE" column into the DataFrame
+    sales_dframe.insert(7, "TOTAL PRICE", sales_dframe["ITEM QUANTITY"] * sales_dframe["ITEM PRICE"])
+
+
     # Remove columns from the DataFrame that are not needed
+    sales_dframe.drop(columns=["ADDRESS", "CITY", "STATE", "POSTAL CODE", "COUNTRY"], inplace=True)
+    
+
     # Group the rows in the DataFrame by order ID
     # For each order ID:
         # Remove the "ORDER ID" column
