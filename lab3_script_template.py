@@ -1,14 +1,27 @@
-
+import sys
+import os
 def main():
     sales_csv = get_sales_csv()
     orders_dir = create_orders_dir(sales_csv)
     process_sales_data(sales_csv, orders_dir)
 
+
+
 # Get path of sales data CSV file from the command line
+
 def get_sales_csv():
     # Check whether command line parameter provided
+    if len(sys.argv) < 2:
+        print("Error : Missing CSV file path")
+        sys.exit(1)
+
+
     # Check whether provide parameter is valid path of file
-    return
+    if not os.path.isfile(sys.argv[1]):
+        print("Error : Invalid CSV file path")
+        sys.exit(2)
+
+    return sys.argv[1]
 
 # Create the directory to hold the individual order Excel sheets
 def create_orders_dir(sales_csv):
