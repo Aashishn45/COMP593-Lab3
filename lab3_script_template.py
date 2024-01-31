@@ -62,13 +62,17 @@ def process_sales_data(sales_csv, orders_dir):
 
     # For each order ID:
         # Remove the "ORDER ID" column
-        order_dframe.drop(columns=["ORDER ID"], inplace=True)
+        order_dframe.drop(columns=["ORDER ID"], inplace= True)
 
         # Sort the items by item number
         order_dframe.sort_values(by='ITEM NUMBER', inplace= True)
         
         # Append a "GRAND TOTAL" row
+        grandtot = order_dframe["TOTAL PRICE"].sum()
+        grandtot_df = pd.DataFrame({"ITEM PRICE": ['GRAND TOTAL'], "TOTAL PRICE": [grandtot]})
+        order_dframe = pd.concat([order_dframe, grandtot_df])
         
+
 
         # Determine the file name and full path of the Excel sheet
         # Export the data to an Excel sheet
