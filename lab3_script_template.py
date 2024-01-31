@@ -57,10 +57,19 @@ def process_sales_data(sales_csv, orders_dir):
     
 
     # Group the rows in the DataFrame by order ID
+    for orderid, order_dframe in sales_dframe.groupby("ORDER ID"):
+
+
     # For each order ID:
         # Remove the "ORDER ID" column
+        order_dframe.drop(columns=["ORDER ID"], inplace=True)
+
         # Sort the items by item number
+        order_dframe.sort_values(by='ITEM NUMBER', inplace= True)
+        
         # Append a "GRAND TOTAL" row
+        
+
         # Determine the file name and full path of the Excel sheet
         # Export the data to an Excel sheet
         # TODO: Format the Excel sheet
