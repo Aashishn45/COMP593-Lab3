@@ -69,12 +69,12 @@ def process_sales_data(sales_csv, orders_dir):
         
         # Append a "GRAND TOTAL" row
         grandtot = order_dframe["TOTAL PRICE"].sum()
-        grandtot_df = pd.DataFrame({"ITEM PRICE": ['GRAND TOTAL'], "TOTAL PRICE": [grandtot]})
+        grandtot_df = pd.DataFrame({"ITEM PRICE": ['GRAND TOTAL:'], "TOTAL PRICE": [grandtot]})
         order_dframe = pd.concat([order_dframe, grandtot_df])
-        
-
 
         # Determine the file name and full path of the Excel sheet
+
+
         # Export the data to an Excel sheet
         # TODO: Format the Excel sheet
     pass
