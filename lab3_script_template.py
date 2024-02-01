@@ -78,9 +78,16 @@ def process_sales_data(sales_csv, orders_dir):
     
 
         # Export the data to an Excel sheet
-        name_of_sheet = f"{orderid}"order_dframe.to_excel(orders_df_path, index= False, name_of_sheet= name_of_sheet)
+        name_of_sheet = f"{orderid}" 
+        order_dframe.to_excel(orders_df_path, index= False, name_of_sheet= name_of_sheet)
 
        # TODO: Format the Excel sheet
+        ex_write = pd.ExcelWriter(orders_df_path, engine= "xlsxwriter")
+        order_dframe.to_excel(ex_write, index= False, name_of_sheet=name_of_sheet)
+        work_book = ex_write.book
+        work_sheet = ex_write.sheets[name_of_sheet]
+        
+
         
     pass
 
