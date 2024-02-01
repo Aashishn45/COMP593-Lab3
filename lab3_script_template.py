@@ -73,10 +73,15 @@ def process_sales_data(sales_csv, orders_dir):
         order_dframe = pd.concat([order_dframe, grandtot_df])
 
         # Determine the file name and full path of the Excel sheet
-
+        ordernam = f"ORDER_{orderid}.xlsx"
+        orders_df_path = os.path.join(orders_dir, ordernam)
+    
 
         # Export the data to an Excel sheet
-        # TODO: Format the Excel sheet
+        name_of_sheet = f"{orderid}"order_dframe.to_excel(orders_df_path, index= False, name_of_sheet= name_of_sheet)
+
+       # TODO: Format the Excel sheet
+        
     pass
 
 if __name__ == '__main__':
