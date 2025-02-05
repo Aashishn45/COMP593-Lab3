@@ -86,9 +86,7 @@ def process_sales_data(sales_csv, orders_dir):
         order_dframe.to_excel(ex_write, index= False, name_of_sheet=name_of_sheet)
         work_book = ex_write.book
         work_sheet = ex_write.sheets[name_of_sheet]
-        
-
-        
+          
     pass
 
 if __name__ == '__main__':
